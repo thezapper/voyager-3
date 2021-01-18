@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "types": [
+      "babylonjs",
+      "babylonjs-loaders",
+      "dom-mediacapture-record"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "./@types"
+    ],
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "ES2017",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "react"
+  },
+  "lib": [
+    "es2015"
+  ]
+}
