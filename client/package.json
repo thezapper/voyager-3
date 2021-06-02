@@ -4,7 +4,7 @@
   "description": "Babylon demonstration application",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/app.js 443",
+    "start": "cd .. && node ./server/node/dist/app.js 443",
     "watch": "webpack -d --watch",
     "build": "webpack -d",
     "lint": "eslint ./src --ext .js,.ts,.tsx"

@@ -14,12 +14,15 @@ else
   log.ok(`Running node ${NODE_VERSION}, OK to continue`);
 }
 
-const port: string = process.argv[2];
+let port: string = process.argv[2];
 if (port === undefined)
-  throw new Error('Port not supplied on args');
+{
+  port = '3000';
+  log.error('Port not supplied on args, using 3000');
+}
 
 import express from "express";
-import bodyParser from "body-parser";
+//import bodyParser from "body-parser";
 var https = require('https');
 var fs = require('fs');
 const app = express();
@@ -27,9 +30,9 @@ const app = express();
 app.use(express.static('../../client/public'));
 app.use(express.static('../../client/public/images'));
 app.use(express.static('../../client/node_modules'));
-app.use(express.static('../../assets'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(express.static('../../assets'));
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
 
 import { Endpoints } from "./endpoints";
 //const ep = require('./endpoints').Endpoints;
@@ -43,12 +46,12 @@ let cwd = process.cwd();
 log.info(`Current Working Directory: ${cwd}`);
 
 const options = {
-  key: fs.readFileSync(cwd + '\\src\\cert\\privatekey.key'),
-  cert: fs.readFileSync(cwd + '\\src\\cert\\certificate.crt')
+  key: fs.readFileSync(cwd + '/../cert/privatekey.key'),
+  cert: fs.readFileSync(cwd + '/../cert/certificate.crt')
 };
 
 const server = https.createServer(options, app);
 
 // start the server listening
-log.info("Starting Express server on port %s...", port);
+log.info(`Starting Express server on port ${port}...`);
 server.listen(port);
