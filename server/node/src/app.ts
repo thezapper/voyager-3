@@ -1,4 +1,4 @@
-import { Logging } from "./logging"
+import { Logging } from "./logging.js"
 const log = new Logging();
 
 log.info("Starting up...");
@@ -23,8 +23,8 @@ if (port === undefined)
 
 import express from "express";
 //import bodyParser from "body-parser";
-var https = require('https');
-var fs = require('fs');
+import https from 'https';
+import fs from 'fs';
 const app = express();
 
 app.use(express.static('../../client/public'));
@@ -34,7 +34,7 @@ app.use(express.static('../../client/node_modules'));
 //app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.json());
 
-import { Endpoints } from "./endpoints";
+import { Endpoints } from "./endpoints.js";
 //const ep = require('./endpoints').Endpoints;
 
 var myArgs = process.argv;

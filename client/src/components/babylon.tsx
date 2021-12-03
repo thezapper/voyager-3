@@ -20,12 +20,12 @@ export const Babylon: FunctionComponent<Babylon_props> = (props) =>
         let canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
         engine.createScene(canvas);
 
-        let canvas2 = document.getElementById("renderTarget") as HTMLCanvasElement;
-        engine.setCanvas(canvas2);
+        //let canvas2 = document.getElementById("renderTarget") as HTMLCanvasElement;
+        //engine.setCanvas(canvas2);
 
         //vRec.startRecording(canvas2);
 
-        engine.loadModel("Hello");
+        //engine.loadModel("Hello");
         return () =>
         {
             console.log("Destroying Babylon component...");
@@ -35,10 +35,7 @@ export const Babylon: FunctionComponent<Babylon_props> = (props) =>
 
     return (
         <>
-            <canvas id="BblCanvas" width="1280" height="720"></canvas>
-            <canvas id="renderTarget" width="512" height="512"></canvas>
-            <Placeholder />
-
+            <canvas id="BblCanvas" width="1920" height="720"></canvas>
         </>
     )
 }

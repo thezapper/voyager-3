@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Babylon } from './components/babylon';
-import { Renderer2d} from './components/Renderer2d';
+import { Renderer2d} from './components/Renderer2d.js';
 
 interface IProps
 {
@@ -38,7 +38,7 @@ class MainApp extends React.Component<IProps, IState>
 
     return (
       <div>
-        <Renderer2d />
+        <Babylon />
       </div>
 
     );

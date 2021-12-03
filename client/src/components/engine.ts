@@ -15,8 +15,8 @@ var camera3: bln.ArcRotateCamera;
 //var camera5: bln.ArcRotateCamera;
 let shadowGenerator: bln.ShadowGenerator;
 let rt1: bln.RenderTargetTexture;
-let rt2: bln.RenderTargetTexture;
-let rt3: bln.RenderTargetTexture;
+//let rt2: bln.RenderTargetTexture;
+//let rt3: bln.RenderTargetTexture;
 let clearCol = new bln.Color4(0.0, 0.0, 0.0, 1.0);
 function renderLoop()
 {
@@ -25,14 +25,14 @@ function renderLoop()
     if (cube)
         cube.rotate(bln.Vector3.Up(), 0.01);
 
-    camera2.alpha += 0.001;
-    camera3.alpha -= 0.002;
+    //camera2.alpha += 0.001;
+    //camera3.alpha -= 0.002;
 
     //engine.clear(clearCol, true, true);
 
     scene.render();
 
-    getImageFromCamera(camera2);
+    //getImageFromCamera(camera2);
 }
 
 function createScene(canvas: HTMLCanvasElement)
@@ -44,11 +44,11 @@ function createScene(canvas: HTMLCanvasElement)
     camera1.setTarget(bln.Vector3.Zero());
     camera1.attachControl(canvas, false); // Attach the camera to the canvas
 
-    camera2 = new bln.ArcRotateCamera("Camera2", 0, bln.Angle.FromDegrees(45).radians(), 20, new bln.Vector3(0, 0, 0), scene);
-    camera2.setTarget(new bln.Vector3(1, 0, 0));
+    // camera2 = new bln.ArcRotateCamera("Camera2", 0, bln.Angle.FromDegrees(45).radians(), 20, new bln.Vector3(0, 0, 0), scene);
+    // camera2.setTarget(new bln.Vector3(1, 0, 0));
 
-    camera3 = new bln.ArcRotateCamera("Camera3", 0, bln.Angle.FromDegrees(65).radians(), 30, new bln.Vector3(0, 0, 0), scene);
-    camera3.setTarget(new bln.Vector3(1, 0, 0));
+    // camera3 = new bln.ArcRotateCamera("Camera3", 0, bln.Angle.FromDegrees(65).radians(), 30, new bln.Vector3(0, 0, 0), scene);
+    // camera3.setTarget(new bln.Vector3(1, 0, 0));
 
     let lightPos = new bln.Vector3(0, 10, 0);
 
@@ -69,15 +69,15 @@ function createScene(canvas: HTMLCanvasElement)
     ground.receiveShadows = true;
 
     scene.activeCameras.push(camera1);
-    scene.activeCameras.push(camera2);
-    scene.activeCameras.push(camera3);
+    //scene.activeCameras.push(camera2);
+    //scene.activeCameras.push(camera3);
 
     //scene._activeCamera = camera1;
 
     //rt1 = createRenderTarget(camera1, 1280, 720);
-    rt2 = createRenderTarget(camera2);
+    //rt2 = createRenderTarget(camera2);
     //rt2.clearColor = new bln.Color4(1.0, 0.0, 0.0, 0.0);
-    rt3 = createRenderTarget(camera3);
+    //rt3 = createRenderTarget(camera3);
 
     //rt2.renderList.push(sphere);
 
@@ -236,6 +236,6 @@ function setCanvas(canvas: HTMLCanvasElement)
 export
 {
     createScene as createScene,
-    loadModel as loadModel,
+    //loadModel as loadModel,
     setCanvas as setCanvas
 }
