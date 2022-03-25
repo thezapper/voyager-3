@@ -1,0 +1,22 @@
+{
+  "name": "voyager-3",
+  "version": "1.0.0",
+  "description": "Space in 3D",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thezapper/voyager-3.git"
+  },
+  "author": "Gary Gray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thezapper/voyager-3/issues"
+  },
+  "homepage": "https://github.com/thezapper/voyager-3#readme",
+  "dependencies": {
+    "three": "^0.139.0"
+  }
+}
