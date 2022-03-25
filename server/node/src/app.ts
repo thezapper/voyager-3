@@ -1,3 +1,8 @@
+import express from "express";
+import https from 'https';
+import fs from 'fs';
+
+import { Endpoints } from "./endpoints.js";
 import { Logging } from "./logging.js"
 const log = new Logging();
 
@@ -21,19 +26,13 @@ if (port === undefined)
   log.error('Port not supplied on args, using 3000');
 }
 
-import express from "express";
-//import bodyParser from "body-parser";
-import https from 'https';
-import fs from 'fs';
+
 const app = express();
-
-
 var endpoints = new Endpoints(app);
 
-import { Endpoints } from "./endpoints.js";
 //const ep = require('./endpoints').Endpoints;
 
-//var myArgs = process.argv;
+var myArgs = process.argv;
 
 log.info('--- STARTING SERVER ---');
 

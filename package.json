@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "node ./server/node/dist/app.js 443",
-    "watch-svr": "./node_modules/.bin/tsc -w",
+    "watch-svr": ".\\node_modules\\.bin\\tsc --project ./server/node/tsconfig.json --watch",
     "build-svr": ".\\node_modules\\.bin\\tsc --project ./server/node/tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
