@@ -28,9 +28,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Lint the project
         run: |
-          echo pwd,
-          cd ./client,
-          echo pwd,
           npm --install,
           npm run lint
 

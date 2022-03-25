@@ -15,7 +15,7 @@ export const Babylon: FunctionComponent<Babylon_props> = (props) =>
 
     useEffect(() => 
     {
-        console.log("Creating Babylon component...");
+        console.log("Creating Babylon component....");
 
         let canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
         engine.createScene(canvas);
