@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import * as THREE from './three';
+import * as THREE from 'three';
 
 interface Three_props { }
 

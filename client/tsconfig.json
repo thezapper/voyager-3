@@ -2,8 +2,7 @@
   "compilerOptions": {
     "types": [
       "babylonjs",
-      "babylonjs-loaders",
-      "dom-mediacapture-record"
+      "babylonjs-loaders"
     ],
     "typeRoots": [
       "node_modules/@types",

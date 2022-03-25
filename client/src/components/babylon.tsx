@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import * as engine from './engine';
-import * as vRec from './videoRecorder'
-import { Placeholder } from './placeholder'
+//import * as vRec from './videoRecorder'
+//import { Placeholder } from './placeholder'
 
 interface Babylon_props { }
 

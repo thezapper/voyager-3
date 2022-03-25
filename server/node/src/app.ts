@@ -27,18 +27,13 @@ import https from 'https';
 import fs from 'fs';
 const app = express();
 
-app.use(express.static('../../client/public'));
-app.use(express.static('../../client/public/images'));
-app.use(express.static('../../client/node_modules'));
-//app.use(express.static('../../assets'));
-//app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
+
+var endpoints = new Endpoints(app);
 
 import { Endpoints } from "./endpoints.js";
 //const ep = require('./endpoints').Endpoints;
 
-var myArgs = process.argv;
-var endpoints = new Endpoints(app);
+//var myArgs = process.argv;
 
 log.info('--- STARTING SERVER ---');
 
@@ -46,8 +41,8 @@ let cwd = process.cwd();
 log.info(`Current Working Directory: ${cwd}`);
 
 const options = {
-  key: fs.readFileSync(cwd + '/../cert/privatekey.key'),
-  cert: fs.readFileSync(cwd + '/../cert/certificate.crt')
+  key: fs.readFileSync(cwd + '/server/cert/privatekey.key'),
+  cert: fs.readFileSync(cwd + '/server/cert/certificate.crt')
 };
 
 const server = https.createServer(options, app);

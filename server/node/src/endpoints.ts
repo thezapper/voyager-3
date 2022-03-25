@@ -4,12 +4,15 @@ export class Endpoints
 {
   constructor(exp: express.Express)
   {
+    exp.use(express.static('./client/public'));
+    exp.use(express.static('./node_modules'));
+
     // ----------------------------------------------------------
     // Request home page
     // ----------------------------------------------------------
     exp.get('/', (req, res) =>
     {
-      res.sendFile('index.html')
+      res.sendFile('index.html');
     });
 
     // ----------------------------------------------------------
