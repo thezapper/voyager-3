@@ -6,8 +6,8 @@ export class Logging
   {
   }
 
-  error   = (txt) => console.log(chalk.bgRed.whiteBright(txt));
-  warning = (txt) => console.log(chalk.hex('#FF8000') (txt));
+  error   = (txt : string) => console.log(chalk.bgRed.whiteBright(txt));
+  warning = (txt : string) => console.log(chalk.hex('#FF8000') (txt));
   
   ok(txt : string)
   {
