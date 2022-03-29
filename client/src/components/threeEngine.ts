@@ -4,7 +4,7 @@ const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });
+const material = new THREE.MeshPhongMaterial({ color: 0x44aa88 });
 const cube = new THREE.Mesh(geometry, material);
 
 export class threeEngine 
@@ -30,6 +30,9 @@ export class threeEngine
         this.scene.add(cube);
 
         //this.renderer.render(this.scene, this.cam1);
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(-1, 2, 4);
+        this.scene.add(light);
 
         requestAnimationFrame(this.render);
     }
