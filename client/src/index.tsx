@@ -2,9 +2,9 @@ import "./styles.css";
 
 import React, { FunctionComponent, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { UIPanel } from './components/UIPanel';
+import { UIPanel } from './components/ui/UIPanel';
 
-import { ThreeRenderer } from './components/threeRenderer';
+import { ThreeRenderer } from './components/three/threeRenderer';
 
 export interface planet {
   name: string;

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { planet } from '..';
+import { planet } from '../..';
 
 export class threeEngine 
 {

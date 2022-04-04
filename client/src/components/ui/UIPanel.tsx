@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import {planet} from '../index'
+import {planet} from '../../index'
 import { Details } from './details'
 
 interface UIPanel_props {
