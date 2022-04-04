@@ -1,5 +1,6 @@
 //var webpack = require('webpack');
 //import  path from 'path';
+const CopyPlugin = require("copy-webpack-plugin");
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'public');
@@ -19,6 +20,13 @@ module.exports = {
     poll: 1000,
     ignored: /node_modules/
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "client/src/index.html", to: "index.html" },
+      ],
+    }),
+  ],
   module: {
     rules: [
       {

@@ -5,15 +5,21 @@
 - [x] Node/Express server
 - [x] React
 
-## Babylon scene
+## General 3D scene
 - [x] Camera
-- [X] Keyboard mouse control
+- [ ] Keyboard mouse control
 - [ ] Render targets
 - [ ] Multiple cameras
     - [ ] Different shaders (to represent depth and segmentation)
-- [X] Model loading
+- [ ] Model loading
 - [ ] Skybox
+- [ ] Post processing effects
 
-## Video
-- [ ] Render target to video
-- [ ] Multiple outputs to video
+## Solar system
+- [ ] Draw planets
+- [ ] Load planet data from server
+
+## UI Integration
+- [ ] List planets
+- [ ] Planet detail pane
+- [ ] Communicate with 3D scene

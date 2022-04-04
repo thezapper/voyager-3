@@ -1,9 +1,17 @@
-import React, { FunctionComponent } from 'react';
-import ReactDOM from 'react-dom';
+import "./styles.css";
 
-import { Babylon } from './components/babylon';
-import { ThreeRenderer } from './components/three';
-import { Renderer2d} from './components/Renderer2d.js';
+import React, { FunctionComponent, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { UIPanel } from './components/UIPanel';
+
+import { ThreeRenderer } from './components/threeRenderer';
+
+export interface planet {
+  name: string;
+  radius: number;
+  distance: number;
+  url?: string;
+}
 
 interface IProps
 {
@@ -11,43 +19,41 @@ interface IProps
 
 interface IState
 {
-  someText: string,
 }
 
+let selectedSystem = "Sol";
+let planets:planet[];
 
+planets = [ 
+  // radius in km, distance in millions of km
+  {name:'Mercury', radius:2440, distance:60, url:'Mercury_(planet)'}, 
+  {name:'Venus', radius:6050, distance:100, url:'Venus'}, 
+  {name:'Earth', radius:6370, distance:150, url:'Earth'}, 
+  {name:'Mars', radius:3390, distance:220, url:'Mars'}, 
+  {name:'Jupiter', radius:69900, distance:780, url:'Jupiter'}, 
+  {name:'Saturn', radius:58200, distance:1420, url:'Saturn'}, 
+  {name:'Uranus', radius:25300, distance:2870, url:'Uranus'}, 
+  {name:'Neptune', radius:24600, distance:4500, url:'Neptune'}, 
+];
 
-class MainApp extends React.Component<IProps, IState>
+const MainApp: FunctionComponent = () =>
 {
-  constructor(props: IProps)
-  {
-    super(props);
+  const [currentPlanet, setPlanet] = useState('none');
 
-    this.state =
+  let onSelectPlanet = (name: string) =>
     {
-      someText: "Hello, world!"
-    };
-
-  }
-
-  /* componentDidMount()
-  {
-
-  } */
-
-  render()
-  {
+        console.log("Main comp", name);
+        setPlanet(name);
+    }
 
     return (
-      <div>
-        <ThreeRenderer />
-      </div>
-
+      <>
+        <UIPanel planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
+        <ThreeRenderer planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
+      </>
     );
-  }
 }
 
-
-ReactDOM.render(
-  <MainApp />,
-  document.getElementById('container')
-);
+const container = document.getElementById('container');
+const root = createRoot(container);
+root.render(<MainApp />);
