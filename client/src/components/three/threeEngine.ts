@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 import { planet } from '../..';
+import { ee } from '../../index';
 
 export class threeEngine 
 {
@@ -11,7 +12,7 @@ export class threeEngine
     raycast: THREE.Raycaster;
 
     updateList : THREE.Mesh[];
-    onSelectCallback: (name:string)=>void;
+    //onSelectCallback: (name:string)=>void;
 
     constructor(canvas: HTMLCanvasElement) 
     {
@@ -37,10 +38,10 @@ export class threeEngine
         canvas.addEventListener('click', this.onMouseClick);
     }
 
-    onSelect(planetName: string)
-    {
-        this.onSelectCallback(planetName);
-    }
+    // onSelect(planetName: string)
+    // {
+    //    // this.onSelectCallback(planetName);
+    // }
 
     setPlanet(name: string)
     {
@@ -84,7 +85,8 @@ export class threeEngine
         // nothing selected
         if (intersects.length == 0)
         {
-            this.onSelect('none');
+            //this.onSelect('none');
+            ee.emit('selectPlanet', 'none');
         }
         else
         {
@@ -93,18 +95,20 @@ export class threeEngine
             {
                 let obj = intersects[i].object as THREE.Mesh;
                 //obj.userData.selected = true;
-                this.onSelect(obj.name);
+                //this.onSelect(obj.name);
+
+                ee.emit('selectPlanet', obj.name);
             }
         }
     }
 
-    init(planets: planet[], selectCallback:(name:string)=>void)
+    init(planets: planet[])
     {
 
         console.log("Init Renderer");
         console.log(planets);
 
-        this.onSelectCallback = selectCallback;
+        //this.onSelectCallback = selectCallback;
 
         const geometry = new THREE.IcosahedronGeometry(1, 2);
         let xOffset = 0;

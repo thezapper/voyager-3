@@ -6,6 +6,15 @@ import { UIPanel } from './components/ui/UIPanel';
 
 import { ThreeRenderer } from './components/three/threeRenderer';
 
+import {EventEmitter} from 'events';
+
+export var ee: EventEmitter;
+ee = new EventEmitter();
+ee.on('message', function (text) {
+  console.log(text)
+})
+//ee.emit('message', 'hello world')
+
 export interface planet {
   name: string;
   radius: number;
@@ -46,10 +55,15 @@ const MainApp: FunctionComponent = () =>
         setPlanet(name);
     }
 
+    ee.on('selectPlanet', (choice) =>
+    {
+      setPlanet(choice);
+    })
+
     return (
       <>
         <UIPanel planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
-        <ThreeRenderer planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
+        <ThreeRenderer planets={planets} curPlanet={currentPlanet} />
       </>
     );
 }

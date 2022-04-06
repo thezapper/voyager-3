@@ -9,7 +9,7 @@ export interface planet {
 
 interface renderer_props {
     planets : planet[];
-    onSelectCallback : (arg0:string)=>void;
+    //onSelectCallback : (arg0:string)=>void;
     curPlanet: string;
  }
 
@@ -25,7 +25,7 @@ export const ThreeRenderer: FunctionComponent<renderer_props> = (props) =>
         canvas.width = document.body.clientWidth; //document.width is obsolete
         canvas.height = document.body.clientHeight;
         engine = new threeEngine(canvas);
-        engine.init(props.planets, props.onSelectCallback);
+        engine.init(props.planets);
 
         return () =>
         {
