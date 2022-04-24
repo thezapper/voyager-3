@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { threeEngine } from './threeEngine'
 
 export interface planet {
@@ -14,28 +14,24 @@ interface renderer_props {
  }
 
  let engine:threeEngine;
-export const ThreeRenderer: FunctionComponent<renderer_props> = (props) =>
-{
+export const ThreeRenderer: FunctionComponent<renderer_props> = (props) => {
 
-    useEffect(() => 
-    {
+    useEffect(() => {
         console.log("Creating Three component...");
 
-        let canvas = document.getElementById("ThreeCanvas") as HTMLCanvasElement;
+        const canvas = document.getElementById("ThreeCanvas") as HTMLCanvasElement;
         canvas.width = document.body.clientWidth; //document.width is obsolete
         canvas.height = document.body.clientHeight;
         engine = new threeEngine(canvas);
         engine.init(props.planets);
 
-        return () =>
-        {
+        return () => {
             console.log("Destroying Three component...");
         };
 
     }, []); // <-- one shot, don't keep creating the engine.
 
-    useEffect(() => 
-    {
+    useEffect(() => {
         console.log("Current planet changed to ", props.curPlanet);
         engine.setPlanet(props.curPlanet);
     },[props.curPlanet]);

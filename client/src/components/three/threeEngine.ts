@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { planet } from '../..';
 import { ee } from '../../index';
 
-import { PlanetObj } from './objects/planet'
+import { PlanetObj, Tickable, superBasic} from './objects/planet'
 
 export class threeEngine {
   renderer: THREE.WebGLRenderer;
@@ -34,7 +34,9 @@ export class threeEngine {
     light.position.set(-1, 2, 4);
     this.scene.add(light);
 
-    requestAnimationFrame(this.render);
+    this.renderer.setAnimationLoop(this.render);
+    this.renderer.setClearColor(new THREE.Color(0.5, 0.6, 0.5))
+    //requestAnimationFrame(this.render);
     canvas.addEventListener('click', this.onMouseClick);
   }
 
@@ -96,12 +98,15 @@ export class threeEngine {
       this.scene.add(newPlanet);
     });
 
+    this.scene.add(new superBasic());
   }
 
-  updatePlanets(time: number) {
+  tickObjects(time: number) {
     this.scene.children.forEach(el => {
-      if (el instanceof PlanetObj)
-        (el as PlanetObj).onUpdate(time)
+      // I think this is ugly.  I'd prefer the C++ approach here - Dynamic cast el to Tickable,
+      // then if not null call tick.
+      if ("tick" in el)
+        ((el as unknown) as Tickable).tick(time)
       
     }
     );
@@ -110,11 +115,11 @@ export class threeEngine {
   render = (time: number) => {
     time *= 0.001;  // convert time to seconds
 
-    this.updatePlanets(time);
+    this.tickObjects(time);
 
     this.renderer.render(this.scene, this.cam1);
 
-    requestAnimationFrame(this.render);
+    //requestAnimationFrame(this.render);
   }
 
 }

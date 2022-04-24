@@ -1,7 +1,19 @@
 // Data for a planet object as it appears in the 3D scene
 import * as THREE from 'three';
 
-export class PlanetObj extends THREE.Mesh {
+export interface Tickable
+{
+  tick(delta: number) : void;
+}
+
+export class superBasic extends THREE.Object3D implements Tickable {
+
+  tick(delta: number): void {
+    
+  }
+}
+
+export class PlanetObj extends THREE.Mesh implements Tickable {
   
   public selected: boolean;
   
@@ -26,7 +38,7 @@ export class PlanetObj extends THREE.Mesh {
     //this.onBeforeRender = this.onUpdate;
   }
 
-  onUpdate(time: number) {
+  tick(time: number) {
     if (this.selected)
       this.rotation.y = time;
 
