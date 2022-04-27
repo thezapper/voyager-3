@@ -26,11 +26,8 @@ if (port === undefined)
   log.error(`Port not supplied on args, using ${port}`);
 }
 
-
 const app = express();
 var endpoints = new Endpoints(app);
-
-//const ep = require('./endpoints').Endpoints;
 
 var myArgs = process.argv;
 
