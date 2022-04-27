@@ -1,4 +1,4 @@
 /node_modules/
 /client/public/
-/server/dist/
+/server/node/dist/
 /.vscode/

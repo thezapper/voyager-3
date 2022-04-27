@@ -22,8 +22,8 @@ else
 let port: string = process.argv[2];
 if (port === undefined)
 {
-  port = '3000';
-  log.error('Port not supplied on args, using 3000');
+  port = '3001';
+  log.error(`Port not supplied on args, using ${port}`);
 }
 
 

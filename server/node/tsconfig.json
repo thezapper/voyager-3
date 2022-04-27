@@ -12,6 +12,7 @@
     "excludeDirectories": ["dist"],
     "excludeFiles": ["tsconfig.json"]
   },
+  "compileOnSave": true,
   "include": ["./src"],
   "exclude": ["./dist"],
   "lib": ["es2015"]
