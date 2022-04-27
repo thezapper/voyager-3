@@ -28,5 +28,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build the front end project
         run: |
-          npm --install,
+          npm install,
           npm run build
