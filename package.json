@@ -9,7 +9,8 @@
     "watch-svr": "concurrently \"tsc --project ./server/node/tsconfig.json --watch\" \"nodemon ./server/node/dist/app.js\"",
     "build-svr": "tsc --project ./server/node/tsconfig.json",
     "watch": "webpack --config ./client/webpack.config.cjs --watch",
-    "build": "webpack --config ./client/webpack.config.cjs"
+    "build": "webpack --config ./client/webpack.config.cjs",
+    "tauri": "tauri"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,13 @@
   "license": "ISC",
   "homepage": "https://github.com/thezapper/solartask#readme",
   "dependencies": {
+    "@tauri-apps/api": "^1.0.0-rc.5",
     "axios": "^0.26.1",
     "events": "^3.3.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.0.0-rc.10",
     "@types/events": "^3.0.0",
     "@types/express": "^4.17.8",
     "@types/node": "^17.0.23",
