@@ -149,37 +149,37 @@ function getImageFromCamera(cam: bln.Camera)
     //let thisRt = cam.customRenderTargets[0];
 
     let ab = camera2.outputRenderTarget.readPixels();
-    let pixels = new Uint8ClampedArray(ab.buffer);
-    let imageData = new ImageData(pixels, 256);
+    // let pixels = new Uint8ClampedArray(ab.buffer); <---------
+   // let imageData = new ImageData(pixels, 256);
 
     let ab3 = camera3.outputRenderTarget.readPixels();
-    let pixels3 = new Uint8ClampedArray(ab3.buffer);
-    let imageData3 = new ImageData(pixels3, 256);
+    //let pixels3 = new Uint8ClampedArray(ab3.buffer);
+    //let imageData3 = new ImageData(pixels3, 256);
 
     ctx2.clearRect(0, 0, 200, 200);
 
     //ctx2.putImageData(imageData, 0, 128, 0, 0, 128, 128);
-    createImageBitmap(imageData).then((img: ImageBitmap) =>
-    {
-        ctx2.save()
-        ctx2.translate(0, 512);
-        ctx2.scale(1.0, -1.0);
-        ctx2.drawImage(img, 0, 0, 256, 256);
-        ctx2.drawImage(img, 0, 256, 256, 256);
-        ctx2.restore();
-        //ctx2.drawImage(img, 0, 128, 128, 128);
-    });
+    // createImageBitmap(imageData).then((img: ImageBitmap) =>
+    // {
+    //     ctx2.save()
+    //     ctx2.translate(0, 512);
+    //     ctx2.scale(1.0, -1.0);
+    //     ctx2.drawImage(img, 0, 0, 256, 256);
+    //     ctx2.drawImage(img, 0, 256, 256, 256);
+    //     ctx2.restore();
+    //     //ctx2.drawImage(img, 0, 128, 128, 128);
+    // });
 
-    createImageBitmap(imageData3).then((img: ImageBitmap) =>
-    {
-        ctx2.save()
-        ctx2.translate(0, 512);
-        ctx2.scale(1.0, -1.0);
-        ctx2.drawImage(img, 256, 0, 256, 256);
-        ctx2.drawImage(img, 256, 256, 256, 256);
-        ctx2.restore();
-        //ctx2.drawImage(img, 0, 128, 128, 128);
-    });
+    // createImageBitmap(imageData3).then((img: ImageBitmap) =>
+    // {
+    //     ctx2.save()
+    //     ctx2.translate(0, 512);
+    //     ctx2.scale(1.0, -1.0);
+    //     ctx2.drawImage(img, 256, 0, 256, 256);
+    //     ctx2.drawImage(img, 256, 256, 256, 256);
+    //     ctx2.restore();
+    //     //ctx2.drawImage(img, 0, 128, 128, 128);
+    // });
 
     ctx2.fillStyle = 'green';
     ctx2.fillRect(10, 10, 150, 100);
