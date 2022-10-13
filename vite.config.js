@@ -6,7 +6,11 @@ export default defineConfig(
   {
     plugins: [react()],
     server: {port:80},
-    root: "client/src"
+    root: "client/src",
+    publicDir: "client/public",
+    build: {
+      outDir: "../build"
+    }
   }
   
 );

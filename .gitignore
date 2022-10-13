@@ -1,5 +1,6 @@
 /node_modules/
 /client/public/
+/client/build/
 /server/node/dist/
 /server/rust/target/
 /.vscode/

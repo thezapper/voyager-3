@@ -7,6 +7,8 @@
 use actix_web::{middleware::Logger, App, HttpServer};
 use actix_files as axf;
 
+use std::{env, fs};
+
 type Counter = u8;
 
 fn main() //-> std::io::Result<()>
@@ -50,7 +52,10 @@ fn main() //-> std::io::Result<()>
 
     let myNum = 42;
     println!("num: {}", myNum);
-   // let n2 = myPrint(myNum);
+
+    let mut my2ndNum = myNum;
+    my2ndNum *= 2;
+    println!("num: {}", my2ndNum);
     println!("num: {}", myNum);
     //connectToMqtt();
 
@@ -73,8 +78,26 @@ fn main() //-> std::io::Result<()>
     let p1 = MyPoint {x:123, y:456};
     let p2 = MyPoint {x:123.0, y:456};
 
+
+    // stop messing around
+
+    // Start the server
+
+    // get arguments
+    let args: Vec<String> = env::args().collect();
+    println!("{:?}", args);
+
+    let err = printPath();
+
+
     let res = runServer();
 
+}
+
+fn printPath() -> std::io::Result<()> {
+    let path = env::current_dir()?;
+    println!("The current directory is {}", path.display());
+    Ok(())
 }
 
 struct MyPoint<T, T2>
