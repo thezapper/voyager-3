@@ -1,41 +1,43 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import * as engine from './engine';
+import React, { FunctionComponent, useEffect } from 'react';
+import * as engine from './babylonEngine';
 //import * as vRec from './videoRecorder'
 //import { Placeholder } from './placeholder'
 
-interface Babylon_props { }
+//interface Babylon_props { }
 
-export const Babylon: FunctionComponent<Babylon_props> = (props) =>
+export const Babylon: FunctionComponent = () =>
 {
-    navigator.mediaDevices.enumerateDevices()
-        .then((device) =>
-        {
-            console.dir(device);
-        });
-
-    useEffect(() => 
+  navigator.mediaDevices.enumerateDevices()
+    .then((device) =>
     {
-        console.log("Creating Babylon component....");
-
-        let canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
-        engine.createScene(canvas);
-
-        //let canvas2 = document.getElementById("renderTarget") as HTMLCanvasElement;
-        //engine.setCanvas(canvas2);
-
-        //vRec.startRecording(canvas2);
-
-        //engine.loadModel("Hello");
-        return () =>
-        {
-            console.log("Destroying Babylon component...");
-        };
-
+      console.dir(device);
     });
 
-    return (
-        <>
-            <canvas id="BblCanvas" width="1920" height="720"></canvas>
-        </>
-    )
+  useEffect(() => 
+  {
+    console.log("Creating Babylon component....");
+
+    const canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
+    engine.createScene(canvas);
+
+    //let canvas2 = document.getElementById("renderTarget") as HTMLCanvasElement;
+    //engine.setCanvas(canvas2);
+
+    //vRec.startRecording(canvas2);
+
+    //engine.loadModel("Hello");
+    return () =>
+    {
+      console.log("Destroying Babylon component...");
+    };
+
+  }, []);
+
+  const width = document.body.clientWidth; //document.width is obsolete
+  const height = document.body.clientHeight;
+  return (
+    <>
+      <canvas id="BblCanvas" width={width} height={height}></canvas>
+    </>
+  )
 }

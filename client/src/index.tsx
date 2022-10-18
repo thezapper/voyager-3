@@ -5,12 +5,13 @@ import { createRoot } from 'react-dom/client';
 import { UIPanel } from './components/ui/UIPanel';
 
 import { ThreeRenderer } from './components/three/threeRenderer';
+import { Babylon } from './components/babylon/babylon';
 
 import {EventEmitter} from 'events';
 
-export var ee: EventEmitter;
-ee = new EventEmitter();
-ee.on('message', function (text) {
+export const ee = new EventEmitter();
+ee.on('message', function (text) 
+{
   console.log(text)
 })
 //ee.emit('message', 'hello world')
@@ -22,18 +23,18 @@ export interface planet {
   url?: string;
 }
 
-interface IProps
-{
-}
+// interface IProps
+// {
+// }
 
-interface IState
-{
-}
+// interface IState
+// {
+// }
 
-let selectedSystem = "Sol";
-let planets:planet[];
+const selectedSystem = "Sol";
+//let planets:planet[];
 
-planets = [ 
+const planets:planet[] = [ 
   // radius in km, distance in millions of km
   {name:'Mercury', radius:2440, distance:60, url:'Mercury_(planet)'}, 
   {name:'Venus', radius:6050, distance:100, url:'Venus'}, 
@@ -49,23 +50,24 @@ const MainApp: FunctionComponent = () =>
 {
   const [currentPlanet, setPlanet] = useState('none');
 
-  let onSelectPlanet = (name: string) =>
-    {
-        console.log("Main comp", name);
-        setPlanet(name);
-    }
+  const onSelectPlanet = (name: string) =>
+  {
+    console.log("Main comp", name);
+    setPlanet(name);
+  }
 
-    ee.on('selectPlanet', (choice) =>
-    {
-      setPlanet(choice);
-    })
+  ee.on('selectPlanet', (choice) =>
+  {
+    setPlanet(choice);
+  })
 
-    return (
-      <>
-        <UIPanel planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
-        <ThreeRenderer planets={planets} curPlanet={currentPlanet} />
-      </>
-    );
+  return (
+    <>
+      <UIPanel planets={planets} curPlanet={currentPlanet} onSelectCallback={onSelectPlanet}/>
+      {/* <ThreeRenderer planets={planets} curPlanet={currentPlanet} /> */}
+      <Babylon />
+    </>
+  );
 }
 
 const container = document.getElementById('container');
