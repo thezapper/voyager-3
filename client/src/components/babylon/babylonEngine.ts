@@ -1,7 +1,7 @@
 import * as bln from 'babylonjs';
 import 'babylonjs-loaders';
 
-import { solarSystem } from './levels/solarSystem';
+import { solarSystem } from './levels/solarSystem/lvl_SolarSystem';
 
 let canvas2: HTMLCanvasElement;
 let ctx2: CanvasRenderingContext2D;
@@ -45,7 +45,7 @@ function createScene(canvas: HTMLCanvasElement)
   const ss = new solarSystem();
   ss.load(scene);
 
-  camera1 = new bln.ArcRotateCamera("Camera", 0, bln.Angle.FromDegrees(45).radians(), 10, new bln.Vector3(0, 0, 0), scene);
+  camera1 = new bln.ArcRotateCamera("Camera", 0, bln.Angle.FromDegrees(45).radians(), 80, new bln.Vector3(0, 0, 0), scene);
   camera1.setTarget(bln.Vector3.Zero());
   camera1.attachControl(canvas, false); // Attach the camera to the canvas
 
@@ -70,7 +70,7 @@ function createScene(canvas: HTMLCanvasElement)
   //sphere.position = lightPos;
 
   // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-  const ground = bln.Mesh.CreateGround('ground1', 10, 10, 2, scene, false);
+  const ground = bln.Mesh.CreateGround('ground1', 10, 2.44*2, 2, scene, false);
   ground.receiveShadows = true;
 
   scene.activeCameras.push(camera1);
