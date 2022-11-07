@@ -4,7 +4,7 @@
 A personal project to play around with 3D web development using [Three.js](https://threejs.org/) and [Babylon.js](https://www.babylonjs.com) and demonstrate some of the more amazing facts of space.
 
 ## To Do
-* React Three Fiber
+* ~~React Three Fiber~~ I tried and it's shit.
 *
 *
 *

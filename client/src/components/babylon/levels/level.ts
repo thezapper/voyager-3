@@ -1,5 +1,5 @@
 // A Level is a class that contains standard js/ts Babylon code to create objects in the scene.  
-// I wanted to call it a scene really, but that might be confusing the with the Babylon scene.
+// I wanted to call it a scene really, but that might be confusing with the Babylon scene.
 // The intention is that it acts like a map file in a game, rather than using the quite 
 // complicated editor, shitty React-three-fiber or defining my own map format this just supplies 
 // a function to call which creates the objects and adds them to a Babylon scene object.  It's 

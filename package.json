@@ -11,7 +11,7 @@
     "watch-svr": "concurrently \"tsc --project ./server/node/tsconfig.json --watch\" \"nodemon ./server/node/dist/app.js\"",
     "build-svr": "tsc --project ./server/node/tsconfig.json",
     "tauri": "tauri",
-    "rust" : "cd ./server/rust && cargo run"
+    "rust": "cd ./server/rust && cargo run"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,6 @@
     "babylonjs-loaders": "^5.28.0",
     "chalk": "^5.1.2",
     "concurrently": "^7.4.0",
-    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.25.0",
     "eslint-plugin-react": "^7.31.10",
