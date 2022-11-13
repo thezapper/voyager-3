@@ -20,7 +20,7 @@ export class planet //implements planetData
     
   }
   
-  public onClick()
+  onPick = (evt) =>
   {
     console.log(this.data.name);
   }
@@ -34,6 +34,8 @@ export class planet //implements planetData
     }
     this.sphereMesh = BABYLON.MeshBuilder.CreateSphere(data.name, opts, scn);
     this.sphereMesh.metadata = {parent: this};
+
+    this.sphereMesh.metadata.onPick = this.onPick;
     
     //let offset = 0;
     const radiusFraction = data.radius / 1000;

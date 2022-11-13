@@ -141,10 +141,11 @@ function createScene(canvas: HTMLCanvasElement)
           break;
         case BABYLON.PointerEventTypes.POINTERPICK:
           console.log("POINTER PICK");
+          pointerInfo.pickInfo.pickedMesh.metadata.onPick(pointerInfo);
           break;
         case BABYLON.PointerEventTypes.POINTERTAP:
           {
-            console.log(pointerInfo.pickInfo);
+            //console.log(pointerInfo.pickInfo);
             break;
           }
         case BABYLON.PointerEventTypes.POINTERDOUBLETAP:

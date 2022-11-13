@@ -20,9 +20,12 @@ export class solarSystem implements level
   ];
 
   planetObjs:planet[] = [];
+  private scene: BABYLON.Scene;
 
   load(scn: BABYLON.Scene): void 
   {
+    this.scene = scn;
+
     let orbit = 0
     this.planets.forEach((item, idx) => 
     {
