@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build-vite": "vite build",
+    "build-tsc": "tsc --project ./client/tsconfig.json",
     "start": "node ./server/node/dist/app.js 443",
     "watch-svr": "concurrently \"tsc --project ./server/node/tsconfig.json --watch\" \"nodemon ./server/node/dist/app.js\"",
     "build-svr": "tsc --project ./server/node/tsconfig.json",

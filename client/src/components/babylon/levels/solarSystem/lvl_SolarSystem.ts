@@ -6,6 +6,10 @@ import {planet, planetData} from './planet'
 
 export class solarSystem implements level 
 {
+  // +------------------------------------------------------------+
+  // | TODO - Load all data from the server
+  // +------------------------------------------------------------+
+
   planets:planetData[] = [
     // radius in km, distance in millions of km
     //{ name: 'Sun', radius: 696_000, distance: 0, url: ''},

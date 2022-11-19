@@ -7,7 +7,7 @@
 use actix_web::{middleware::Logger, App, HttpServer};
 use actix_files as axf;
 
-use std::{env, fs};
+use std::{env};
 
 type Counter = u8;
 

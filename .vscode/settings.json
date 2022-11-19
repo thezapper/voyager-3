@@ -3,5 +3,8 @@
     "rust-analyzer.linkedProjects": [
         "./server/rust/Cargo.toml"
     
-    ]
+    ],
+    "files.exclude": {
+        "**/*.map": true
+    }
 }

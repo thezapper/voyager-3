@@ -4,3 +4,4 @@
 /server/node/dist/
 /server/rust/target/
 /.vscode/
+*.js.map

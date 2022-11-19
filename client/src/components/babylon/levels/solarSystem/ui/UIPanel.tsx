@@ -1,10 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import {planet} from '../../index'
+import {planet} from '../planet'
 import { Details } from './details'
+
+// This is the base container component for all the React UI
 
 interface UIPanel_props {
     planets: planet[];
-    onSelectCallback : (arg0:string)=>void;
+    //onSelectCallback : (arg0:string)=>void;
     curPlanet: string;
  }
 

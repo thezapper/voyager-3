@@ -1,7 +1,7 @@
 # Todo
 
 ## Project setup
-- [x] Webpack
+- [x] ~~Webpack~~ Vite
 - [x] Node/Express server
 - [x] React
 
@@ -20,6 +20,6 @@
 - [ ] Load planet data from server
 
 ## UI Integration
-- [ ] List planets
-- [ ] Planet detail pane
-- [ ] Communicate with 3D scene
+- [x] List planets
+- [x] Planet detail pane
+- [x] Communicate with 3D scene

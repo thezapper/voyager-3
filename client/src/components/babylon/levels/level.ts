@@ -7,7 +7,7 @@
 // required by the level. 
 
 import { Scene } from 'babylonjs';
-import 'babylonjs-loaders';
+//import 'babylonjs-loaders';
 
 export interface level
 {
