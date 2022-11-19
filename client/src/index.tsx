@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { UIPanel } from './components/ui/UIPanel';
 
@@ -12,7 +12,7 @@ import {EventEmitter} from 'events';
 export const ee = new EventEmitter();
 ee.on('message', function (text) 
 {
-  console.log(text)
+  console.log("EE> ", text)
 })
 //ee.emit('message', 'hello world')
 
@@ -23,16 +23,10 @@ export interface planet {
   url?: string;
 }
 
-// interface IProps
-// {
-// }
-
-// interface IState
-// {
-// }
+// interface IProps {}
+// interface IState {}
 
 const selectedSystem = "Sol";
-//let planets:planet[];
 
 const planets:planet[] = [ 
   // radius in km, distance in millions of km
@@ -50,16 +44,24 @@ const MainApp: FunctionComponent = () =>
 {
   const [currentPlanet, setPlanet] = useState('none');
 
+  useEffect( () => 
+  {
+    ee.on('selectPlanet', (choice) =>
+    {
+      setPlanet(choice);
+    })
+  },[])
+
   const onSelectPlanet = (name: string) =>
   {
     console.log("Main comp", name);
     setPlanet(name);
   }
 
-  ee.on('selectPlanet', (choice) =>
-  {
-    setPlanet(choice);
-  })
+  // ee.on('selectPlanet', (choice) =>
+  // {
+  //   setPlanet(choice);
+  // })
 
   return (
     <>

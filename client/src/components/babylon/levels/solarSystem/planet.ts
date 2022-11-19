@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import { ee } from '../../../../index'
 
 export interface planetData
 {
@@ -22,7 +23,9 @@ export class planet //implements planetData
   
   onPick = (evt) =>
   {
-    console.log(this.data.name);
+    //console.log(this.data.name);
+    ee.emit('message', this.data.name);
+    ee.emit('selectPlanet', this.data.name);
   }
 
   constructor(data:planetData, scn:BABYLON.Scene)

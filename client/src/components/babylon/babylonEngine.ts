@@ -93,66 +93,36 @@ function createScene(canvas: HTMLCanvasElement)
   //rt = camera.outputRenderTarget;
   //rt.onAfterRenderObservable.add(onTargetRender);
 
-  //createRenderTarget(camera);
-  /* var gamepadManager = new bln.GamepadManager();
-    gamepadManager.onGamepadConnectedObservable.add(
-        (gamepad, state) =>
-        {
-            console.log(state);
-        }
-    );
-    gamepadManager.onGamepadDisconnectedObservable.add(
-        (gamepad, state) =>
-        {
-            console.log(state);
-        }
-    );
-
-    gamepadManager.onGamepadConnectedObservable.add((gamepad, state) =>
+  scene.onPointerObservable.add( (pointerInfo) => 
+  {
+    switch (pointerInfo.type) 
     {
-        gamepad.onButtonDownObservable.add((button, state) =>
-        {
-            //Button has been pressed
-            console.log(button)
-        })
-
-        gamepad.onleftstickchanged((values) =>
-        {
-            //Left stick has been moved
-            console.log(values.x + " " + values.y);
-        });
-    }); */
-
-    scene.onPointerObservable.add( (pointerInfo) => 
+    case BABYLON.PointerEventTypes.POINTERDOWN:
+      console.log("POINTER DOWN");
+      break;
+    case BABYLON.PointerEventTypes.POINTERUP:
+      console.log("POINTER UP");
+      break;
+      // case BABYLON.PointerEventTypes.POINTERMOVE:
+      //   console.log("POINTER MOVE");
+      //   break;
+    case BABYLON.PointerEventTypes.POINTERWHEEL:
+      console.log("POINTER WHEEL");
+      break;
+    case BABYLON.PointerEventTypes.POINTERPICK:
+      console.log("POINTER PICK");
+      pointerInfo.pickInfo.pickedMesh.metadata.onPick(pointerInfo);
+      break;
+    case BABYLON.PointerEventTypes.POINTERTAP:
     {
-      switch (pointerInfo.type) 
-      {
-        case BABYLON.PointerEventTypes.POINTERDOWN:
-          console.log("POINTER DOWN");
-          break;
-        case BABYLON.PointerEventTypes.POINTERUP:
-          console.log("POINTER UP");
-          break;
-        // case BABYLON.PointerEventTypes.POINTERMOVE:
-        //   console.log("POINTER MOVE");
-        //   break;
-        case BABYLON.PointerEventTypes.POINTERWHEEL:
-          console.log("POINTER WHEEL");
-          break;
-        case BABYLON.PointerEventTypes.POINTERPICK:
-          console.log("POINTER PICK");
-          pointerInfo.pickInfo.pickedMesh.metadata.onPick(pointerInfo);
-          break;
-        case BABYLON.PointerEventTypes.POINTERTAP:
-          {
-            //console.log(pointerInfo.pickInfo);
-            break;
-          }
-        case BABYLON.PointerEventTypes.POINTERDOUBLETAP:
-          console.log("POINTER DOUBLE-TAP");
-          break;
-      }
-    });
+      //console.log(pointerInfo.pickInfo);
+      break;
+    }
+    case BABYLON.PointerEventTypes.POINTERDOUBLETAP:
+      console.log("POINTER DOUBLE-TAP");
+      break;
+    }
+  });
 
   engine.runRenderLoop(renderLoop);
 }
