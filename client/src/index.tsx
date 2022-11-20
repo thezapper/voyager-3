@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { createRoot } from 'react-dom/client';
 
 //import { ThreeRenderer } from './components/three/threeRenderer';

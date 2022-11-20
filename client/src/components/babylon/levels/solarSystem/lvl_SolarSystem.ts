@@ -7,6 +7,13 @@ import {planet, planetData} from './planet'
 
 export class solarSystem implements level 
 {
+  // post information back to the UI layer
+  uiNotification : ( data: object ) => void;
+  scene: BABYLON.Scene;
+  engine: BABYLON.Engine;
+  defaultCam: BABYLON.ArcRotateCamera;
+  light: BABYLON.PointLight;
+
   // +------------------------------------------------------------+
   // | TODO - Load all data from the server
   // +------------------------------------------------------------+
@@ -25,14 +32,35 @@ export class solarSystem implements level
   ];
 
   planetObjs:planet[] = [];
-  private scene: BABYLON.Scene;
   
-  // post information back to the UI layer
-  uiNotification : ( data: object ) => void;
-
-  load(scn: BABYLON.Scene): void 
+  selectPlanet(name: string)
   {
-    this.scene = scn;
+    // focus the camera here
+    console.log("Solar System - planet ", name, " selected");
+  }
+
+  // +------------------------------------------------------
+  // | Create and set up the scene
+  // +------------------------------------------------------
+  load(engine: BABYLON.Engine): void 
+  {
+    this.engine = engine;
+    this.scene = new BABYLON.Scene(this.engine);
+
+    // set up events
+    ee.on('selectPlanet', this.selectPlanet.bind(this));
+
+    // Set up objects for the level
+
+    this.defaultCam = new BABYLON.ArcRotateCamera("Camera", 0, BABYLON.Angle.FromDegrees(45).radians(), 80, 
+      new BABYLON.Vector3(0, 0, 0), this.scene);
+    this.defaultCam.setTarget(BABYLON.Vector3.Zero());
+    this.defaultCam.attachControl(engine.getRenderingCanvas(), false); // Attach the camera to the canvas
+    this.scene.activeCameras.push(this.defaultCam);
+
+    const lightPos = new BABYLON.Vector3(0, 50, 0);
+    this.light = new BABYLON.PointLight("pointLight", lightPos, this.scene);
+    this.light.intensity = 0.5;
 
     let orbit = 0
     this.planets.forEach((item, idx) => 
@@ -40,17 +68,53 @@ export class solarSystem implements level
       orbit += item.radius/1000;
       item.distance = orbit;
       orbit += item.radius/1000;
-      this.planetObjs.push(new planet(item, scn))
+      this.planetObjs.push(new planet(item, this.scene))
+    });
+
+    // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
+    const ground = BABYLON.Mesh.CreateGround('ground1', 10, 2.44*2, 2, this.scene, false);
+    ground.receiveShadows = true;
+    //shadowGenerator = new BABYLON.ShadowGenerator(512, light);
+
+    this.scene.onPointerObservable.add( (pointerInfo) => 
+    {
+      switch (pointerInfo.type) 
+      {
+        case BABYLON.PointerEventTypes.POINTERDOWN:
+          console.log("POINTER DOWN");
+          break;
+        case BABYLON.PointerEventTypes.POINTERUP:
+          console.log("POINTER UP");
+          break;
+        // case BABYLON.PointerEventTypes.POINTERMOVE:
+        //   console.log("POINTER MOVE");
+        //   break;
+        case BABYLON.PointerEventTypes.POINTERWHEEL:
+          console.log("POINTER WHEEL");
+          break;
+        case BABYLON.PointerEventTypes.POINTERPICK:
+          console.log("POINTER PICK");
+          pointerInfo.pickInfo.pickedMesh.metadata.onPick(pointerInfo);
+          break;
+        case BABYLON.PointerEventTypes.POINTERTAP:
+        {
+        //console.log(pointerInfo.pickInfo);
+          break;
+        }
+        case BABYLON.PointerEventTypes.POINTERDOUBLETAP:
+          console.log("POINTER DOUBLE-TAP");
+          break;
+      }
     });
 
     //this.uiNotification(this.planets);
     ee.emit('loadPlanets', this.planets);
 
-    ee.on('selectPlanet', (choice) =>
-    {
-      console.log("Solar System - planet ", choice, " selected");
-      // focus the camera here
-    });
+  }
+
+  render(): void 
+  {
+    this.scene.render();  
   }
 
   // Any special case code required for this level

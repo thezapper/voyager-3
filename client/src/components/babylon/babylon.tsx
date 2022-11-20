@@ -10,16 +10,19 @@ import { DinoUI }  from './levels/dino/ui/DinoUI';
 // the Babylon code as pure typescript.  This means if I want to switch React for another library
 // (Vue, Svelte, Solid etc.) I don't need to rewrite all the Babylon related code, just the 
 // React wrapper.
+// Initially the comms between UI and "backend" i.e. Babylon was going to be a callback mechanism
+// passed to the engine, but this is difficult to manage a flexible way so I switched to the event 
+// system.
 export const Babylon: FunctionComponent = () =>
 {
   // const[planets, setPlanets] = useState([]);
   const[currentLevel, setLevel] = useState(LEVEL.SPACE);
   
-  const uiLayerNotification = (data: object) =>
-  {
-    console.log("Callback ", data)
-    // setPlanets(data as any)
-  };
+  // const uiLayerNotification = (data: object) =>
+  // {
+  //   console.log("Callback ", data)
+  //   // setPlanets(data as any)
+  // };
 
   useEffect(() => 
   {
@@ -27,7 +30,7 @@ export const Babylon: FunctionComponent = () =>
 
     const canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
     
-    engine.createScene(canvas, uiLayerNotification);
+    engine.createScene(canvas);
 
     return () =>
     {
