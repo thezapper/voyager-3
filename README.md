@@ -60,10 +60,11 @@ This will start watching the files for the server and initalise a server restart
 ---
 
 ## <rustyText> The Rust webserver experiment
-I've been playing with [Rust](https://www.rust-lang.org/) a bit so wanted to try this.  Assuming you have the Rust tools installed, this server can be run directly from the root dir using.  The "app" has a bunch to test code as I was using it as an experimental playground, the webserver part is handled by [Actix](https://actix.rs/). 
+I've been playing with [Rust](https://www.rust-lang.org/) a bit so wanted to try this.  Assuming you have the Rust tools installed, this server can be run directly from the root dir using.  
 ```
 npm run rust
 ```
+The "app" has a bunch to test code as I was using it as an experimental playground, the webserver part is handled by [Actix](https://actix.rs/). 
 
 ## <rustyText> Tauri Standalone (Electron replacement)
 

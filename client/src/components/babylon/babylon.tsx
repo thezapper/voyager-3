@@ -4,6 +4,11 @@ import { UIPanel } from './levels/solarSystem/ui/UIPanel';
 
 //interface Babylon_props { }
 
+// This component is intended to be a fully enclosed Babylon React component.  However, unlike 
+// react-three-fiber which converts every three object into a React component here I'm keeping
+// the Babylon code as pure typescript.  This means if I want to switch React for another library
+// (Vue, Svelte, Solid etc.) I don't need to rewrite all the Babylon related code, just the small
+// React wrapper.
 export const Babylon: FunctionComponent = () =>
 {
   // navigator.mediaDevices.enumerateDevices()
