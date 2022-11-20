@@ -1,27 +1,23 @@
 import React, { FunctionComponent, ReactComponentElement, ReactElement, useEffect, useState } from 'react';
-import { UIPanel as SpaceUI } from './levels/solarSystem/ui/UIPanel';
+import { LEVEL }   from './levels/level';
+import { SpaceUI } from './levels/solarSystem/ui/SpaceUI';
+import { DinoUI }  from './levels/dino/ui/DinoUI';
 
-enum LEVEL
-{
-  SPACE,
-  DINOS,
-  CV
+interface UiContainer_props {
+  currentLevel: LEVEL
 }
 
-interface UiContainer_props
-{
-  currentLevel : LEVEL
-}
-
-export const UiContainer: FunctionComponent<UiContainer_props> = (props) =>
-{
+export const UiContainer: FunctionComponent<UiContainer_props> = (props) => {
   let current: ReactElement;
 
-  switch (props.currentLevel)
+  switch (props.currentLevel) 
   {
-  case LEVEL.SPACE:
-    current = <SpaceUI />;
-    break;
+    case LEVEL.SPACE:
+      current = <SpaceUI />;
+      break;
+    case LEVEL.DINOS:
+      current = <DinoUI />;
+      break;
   }
   return (
     current

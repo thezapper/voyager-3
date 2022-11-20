@@ -2,6 +2,7 @@ import * as bln from 'babylonjs';
 import 'babylonjs-loaders';
 
 import { solarSystem } from './levels/solarSystem/lvl_SolarSystem';
+import { level } from './levels/level'
 
 let canvas2: HTMLCanvasElement;
 let ctx2: CanvasRenderingContext2D;
@@ -37,24 +38,32 @@ function renderLoop()
   //getImageFromCamera(camera2);
 }
 
-let uiNotification : ( data: object ) => void;
+//let uiNotification : ( data: object ) => void;
 
+let isInit = false;
 // Create the main Babylon scene and set it up.  The parameter 'fn' is a callback function so this
 // class can send data back to the UI system which is a React component.  As this is a plain
 // TS class object there is no props mechanism available to pass a callback down.  The benefit here
 // is not locking the renderer into React as a UI library
 function createScene(canvas: HTMLCanvasElement, fn: (object)=>void)
 {
+  // if (isInit === false)
+  // {
+  //   console.log("load scene first time");
+  //   isInit = true;
+  // }
+  // else
+  //   return;
+
   engine = new bln.Engine(canvas, true);
   scene = new bln.Scene(engine);
 
-  uiNotification = fn;
-
-  const ss = new solarSystem();
-  ss.load(scene);
-
-  // the scene has been loaded, notify the UI layer
-  uiNotification(ss.planets);
+  // currentLevel is a generic 'level' object but is loaded with a specific concrete type
+  // we can only interact with it based on the structure of the 'level' interface
+  // todo - change this based on the current level
+  const currentLevel: level = new solarSystem();
+  currentLevel.uiNotification = fn;
+  currentLevel.load(scene);
 
   camera1 = new bln.ArcRotateCamera("Camera", 0, bln.Angle.FromDegrees(45).radians(), 80, new bln.Vector3(0, 0, 0), scene);
   camera1.setTarget(bln.Vector3.Zero());

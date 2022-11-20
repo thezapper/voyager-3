@@ -6,6 +6,12 @@
 // simply a neater way of containing the creation code and possibly any special case logic
 // required by the level. 
 
+export enum LEVEL {
+  SPACE,
+  DINOS,
+  CV
+}
+
 import { Scene } from 'babylonjs';
 //import 'babylonjs-loaders';
 
@@ -13,5 +19,8 @@ export interface level
 {
   load(scn: Scene) : void;
   update () : void;
+
+  // post information back to the UI layer
+  uiNotification : ( data: object ) => void;
 }
 

@@ -11,7 +11,7 @@ export interface planetData
 
 export class planet //implements planetData
 {
-  protected data: planetData;
+  data: planetData;
 
   private sphereMesh:BABYLON.Mesh;
 

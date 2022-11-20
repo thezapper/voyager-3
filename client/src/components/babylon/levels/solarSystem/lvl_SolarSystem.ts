@@ -1,6 +1,7 @@
 import { level } from '../level';
 import * as BABYLON from 'babylonjs';
 //import 'babylonjs-loaders';
+import { ee } from '../../../..';
 
 import {planet, planetData} from './planet'
 
@@ -25,6 +26,9 @@ export class solarSystem implements level
 
   planetObjs:planet[] = [];
   private scene: BABYLON.Scene;
+  
+  // post information back to the UI layer
+  uiNotification : ( data: object ) => void;
 
   load(scn: BABYLON.Scene): void 
   {
@@ -37,6 +41,15 @@ export class solarSystem implements level
       item.distance = orbit;
       orbit += item.radius/1000;
       this.planetObjs.push(new planet(item, scn))
+    });
+
+    //this.uiNotification(this.planets);
+    ee.emit('loadPlanets', this.planets);
+
+    ee.on('selectPlanet', (choice) =>
+    {
+      console.log("Solar System - planet ", choice, " selected");
+      // focus the camera here
     });
   }
 

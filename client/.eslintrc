@@ -11,6 +11,6 @@
     ],
     "rules": {
         "brace-style" : ["warn", "allman", { "allowSingleLine": false }],
-        "indent": ["warn", 2]
+        "indent": ["warn", 2, {"SwitchCase": 1}]
     }
 }
