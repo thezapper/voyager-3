@@ -2,6 +2,7 @@
   "compilerOptions": {
     "types": [
       "babylonjs",
+      "babylonjs-materials",
       "babylonjs-loaders"
     ],
     "typeRoots": [

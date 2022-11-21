@@ -71,8 +71,13 @@ export class solarSystem implements level
       this.planetObjs.push(new planet(item, this.scene))
     });
 
-    // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-    const ground = BABYLON.Mesh.CreateGround('ground1', 10, 2.44*2, 2, this.scene, false);
+    const groundOpts = 
+    {
+      width:10, height:10,
+      subdivisions: 2,
+      updatable:false
+    }
+    const ground = BABYLON.MeshBuilder.CreateGround('ground1', groundOpts, this.scene);
     ground.receiveShadows = true;
     //shadowGenerator = new BABYLON.ShadowGenerator(512, light);
 

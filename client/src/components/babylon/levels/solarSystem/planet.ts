@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import 'babylonjs-materials';
 import { ee } from '../../../../index'
 
 export interface planetData
@@ -38,22 +39,27 @@ export class planet //implements planetData
     this.sphereMesh = BABYLON.MeshBuilder.CreateSphere(data.name, opts, scn);
     this.sphereMesh.metadata = {parent: this};
 
-    this.sphereMesh.metadata.onPick = this.onPick;
+    const mat = new BABYLON.StandardMaterial("cell", scn);
+
+    // Set up the diffuse texture
+    //cell.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+
+    // Set up diffuse color
+    mat.diffuseColor = new BABYLON.Color3(1, 0.0, 0);
     
-    //let offset = 0;
+    this.sphereMesh.material = mat;
+
     const radiusFraction = data.radius / 1000;
     this.sphereMesh.translate(BABYLON.Axis.Z, data.distance);
-
-    //offset += data.radius / 10000;
-    //offset += item.radius / 10000;
-
+    
     const scl = radiusFraction * 2;
     this.sphereMesh.scaling = new BABYLON.Vector3(scl, scl, scl);
+    
+    this.sphereMesh.metadata.onPick = this.onPick;
 
     // scn.onKeyboardObservable.add( () => {
     //   this.sphereMesh.scaling.y *= 2;
     // });
-
     
   }
 
