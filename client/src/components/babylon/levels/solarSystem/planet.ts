@@ -1,5 +1,5 @@
 import * as BABYLON from 'babylonjs';
-import 'babylonjs-materials';
+import { CellMaterial } from 'babylonjs-materials';
 import { ee } from '../../../../index'
 
 export interface planetData
@@ -34,19 +34,23 @@ export class planet //implements planetData
     this.data = data;
 
     const opts = {
-      segments: 10
+      segments: 5
     }
     this.sphereMesh = BABYLON.MeshBuilder.CreateSphere(data.name, opts, scn);
     this.sphereMesh.metadata = {parent: this};
 
-    const mat = new BABYLON.StandardMaterial("cell", scn);
+    //const mat = new BABYLON.StandardMaterial("cell", scn);
+    const mat = new CellMaterial("cell", scn);
 
     // Set up the diffuse texture
-    //cell.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+    mat.diffuseTexture = new BABYLON.Texture("./devassets/256.jpg", scn);
 
     // Set up diffuse color
-    mat.diffuseColor = new BABYLON.Color3(1, 0.0, 0);
-    
+    mat.diffuseColor = new BABYLON.Color3(0.0, 0.0, 1.0);
+    //mat.emissiveColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+    //mat. = new BABYLON.Color3(0.0, 0.0, 1.0);
+    mat.computeHighLevel = true;
+
     this.sphereMesh.material = mat;
 
     const radiusFraction = data.radius / 1000;

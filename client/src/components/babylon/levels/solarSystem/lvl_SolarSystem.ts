@@ -60,7 +60,7 @@ export class solarSystem implements level
 
     const lightPos = new BABYLON.Vector3(0, 50, 0);
     this.light = new BABYLON.PointLight("pointLight", lightPos, this.scene);
-    this.light.intensity = 0.5;
+    this.light.intensity = 1.0;
 
     let orbit = 0
     this.planets.forEach((item, idx) => 
