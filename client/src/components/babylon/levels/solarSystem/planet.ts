@@ -10,9 +10,12 @@ export interface planetData
   url:string
 }
 
+export type notifyCallback =  ( data: object ) => void;
+
 export class planet //implements planetData
 {
   data: planetData;
+  onClickCallback : notifyCallback;
 
   private sphereMesh:BABYLON.Mesh;
 
@@ -24,9 +27,8 @@ export class planet //implements planetData
   
   onPick = (evt) =>
   {
-    //console.log(this.data.name);
-    ee.emit('message', this.data.name);
-    ee.emit('selectPlanet', this.data.name);
+    ee.emit('selectPlanet', {name: this.data.name, source:'engine'});
+    //this.onClickCallback({name: this.data.name, source:'engine'});
   }
 
   constructor(data:planetData, scn:BABYLON.Scene)

@@ -3,7 +3,12 @@ import * as BABYLON from 'babylonjs';
 //import 'babylonjs-loaders';
 import { ee } from '../../../..';
 
-import {planet, planetData} from './planet'
+import {planet, planetData, notifyCallback} from './planet'
+
+class systemState
+{
+
+}
 
 export class solarSystem implements level 
 {
@@ -33,10 +38,11 @@ export class solarSystem implements level
 
   planetObjs:planet[] = [];
   
-  selectPlanet(name: string)
+  selectPlanet(data: object)
   {
+    //if (data['source'] === 'engine')
     // focus the camera here
-    console.log("Solar System - planet ", name, " selected");
+    console.log("Solar System - planet ", data['name'], " selected from ", data['source']);
   }
 
   // +------------------------------------------------------
@@ -47,7 +53,7 @@ export class solarSystem implements level
     this.engine = engine;
     this.scene = new BABYLON.Scene(this.engine);
 
-    // set up events
+    // set up events from UI
     ee.on('selectPlanet', this.selectPlanet.bind(this));
 
     // Set up objects for the level
@@ -68,7 +74,9 @@ export class solarSystem implements level
       orbit += item.radius/1000;
       item.distance = orbit;
       orbit += item.radius/1000;
-      this.planetObjs.push(new planet(item, this.scene))
+      const newPlanet = new planet(item, this.scene);
+      newPlanet.onClickCallback = this.selectPlanet;
+      this.planetObjs.push(newPlanet)
     });
 
     const groundOpts = 
@@ -87,6 +95,8 @@ export class solarSystem implements level
       {
         case BABYLON.PointerEventTypes.POINTERDOWN:
           console.log("POINTER DOWN");
+          if (pointerInfo.pickInfo.pickedMesh === null)
+            ee.emit('selectPlanet', {name: 'none', source:'engine'});
           break;
         case BABYLON.PointerEventTypes.POINTERUP:
           console.log("POINTER UP");
@@ -98,8 +108,10 @@ export class solarSystem implements level
           console.log("POINTER WHEEL");
           break;
         case BABYLON.PointerEventTypes.POINTERPICK:
+          // Rather than doing an 'if this or that clicked' block here
+          // each mesh has a onclick method
           console.log("POINTER PICK");
-          pointerInfo.pickInfo.pickedMesh.metadata.onPick(pointerInfo);
+          pointerInfo.pickInfo.pickedMesh.metadata?.onPick(pointerInfo);
           break;
         case BABYLON.PointerEventTypes.POINTERTAP:
         {

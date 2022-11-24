@@ -10,7 +10,8 @@ import { ee } from '../../../../../index'
 //   onSelectCallback?: (arg0: string) => void;
 // }
 
-export const SpaceUI: FunctionComponent = (props) => {
+export const SpaceUI: FunctionComponent = (props) => 
+{
 
   const [currentPlanet, setPlanet] = useState('none');
   const [planets, setPlanetList] = useState<planetData[]>([]);
@@ -18,9 +19,9 @@ export const SpaceUI: FunctionComponent = (props) => {
   useEffect(() =>
   {
     // recieve notifications from Babylon
-    ee.on('selectPlanet', (choice) =>
+    ee.on('selectPlanet', (data:object) =>
     {
-      setPlanet(choice);
+      setPlanet( data['name']);
     });
 
     ee.on('loadPlanets', (planetList) =>
@@ -34,7 +35,7 @@ export const SpaceUI: FunctionComponent = (props) => {
   {
     //setPlanet(name);
     // emit an event to let Babylon know
-    ee.emit('selectPlanet', name)
+    ee.emit('selectPlanet', {'name':name, source:'ui'})
   }
 
   const items = planets.map((itm, idx) => 
