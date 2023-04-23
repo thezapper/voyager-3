@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build-vite": "vite build",
+    "preview": "vite preview",
     "build-tsc": "tsc --project ./client/tsconfig.json",
     "start": "node ./server/node/dist/app.js 443",
     "watch-svr": "concurrently \"tsc --project ./server/node/tsconfig.json --watch\" \"nodemon ./server/node/dist/app.js\"",

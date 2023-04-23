@@ -4,6 +4,7 @@ import * as BABYLON from 'babylonjs';
 import { ee } from '../../../..';
 
 import {planet, planetData, notifyCallback} from './planet'
+//import { PlanetObj } from '../../../three/objects/planet';
 
 class systemState
 {
@@ -18,6 +19,7 @@ export class solarSystem implements level
   engine: BABYLON.Engine;
   defaultCam: BABYLON.ArcRotateCamera;
   light: BABYLON.PointLight;
+  currentPlanet?: planet;
 
   // +------------------------------------------------------------+
   // | TODO - Load all data from the server
@@ -43,6 +45,32 @@ export class solarSystem implements level
     //if (data['source'] === 'engine')
     // focus the camera here
     console.log("Solar System - planet ", data['name'], " selected from ", data['source']);
+    
+    if (data['name'] === 'none')
+    {
+      this.currentPlanet.isSelected = false;
+      this.currentPlanet = undefined;
+      return;
+    }
+
+    if (this.currentPlanet !== undefined)
+      this.currentPlanet.isSelected = false;
+
+    this.currentPlanet = this.planetObjs.find( (p) => p.data.name === data['name']);
+    
+    const tgt = this.currentPlanet?.getPos();
+    this.defaultCam.setTarget(tgt);
+    const pos = this.defaultCam.position;
+    pos._z = tgt._z;
+    this.defaultCam.setPosition(pos);
+  }
+
+  // TODO
+  async loadFile()
+  {
+    const file = await fetch('./assets/system.json');
+    const data = await file.json();
+    console.log(data);
   }
 
   // +------------------------------------------------------
@@ -50,6 +78,22 @@ export class solarSystem implements level
   // +------------------------------------------------------
   load(engine: BABYLON.Engine): void 
   {
+    this.loadFile();
+   
+    // .then( response => 
+    // {
+    //   console.log(response);
+    //   response.json();
+    // })
+    // .then( data => 
+    // {
+    //   console.log(data);
+    // })
+    // .catch( err  => 
+    // {
+    //   console.log(err);
+    // });
+
     this.engine = engine;
     this.scene = new BABYLON.Scene(this.engine);
 
@@ -131,6 +175,12 @@ export class solarSystem implements level
 
   render(): void 
   {
+
+    this.planetObjs.forEach((item, idx) => 
+    {
+      item.tick();
+    });
+
     this.scene.render();  
   }
 

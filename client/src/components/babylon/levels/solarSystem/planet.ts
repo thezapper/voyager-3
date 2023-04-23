@@ -18,15 +18,24 @@ export class planet //implements planetData
   onClickCallback : notifyCallback;
 
   private sphereMesh:BABYLON.Mesh;
+  isSelected  = false;
 
-  private onUpdate()
+  tick = () =>
   {
-    this.sphereMesh.scaling.y *= 2;
-    
+    if (this.isSelected == true)
+    {
+      this.sphereMesh.rotation.y += 2;
+    }
+  }
+
+  getPos = () =>
+  {
+    return this.sphereMesh.position;
   }
   
   onPick = (evt) =>
   {
+    this.isSelected = true;
     ee.emit('selectPlanet', {name: this.data.name, source:'engine'});
     //this.onClickCallback({name: this.data.name, source:'engine'});
   }
@@ -35,17 +44,26 @@ export class planet //implements planetData
   {
     this.data = data;
 
+    // ee.on('selectPlanet', (data) => 
+    // {
+    //   console.log(data, this.data);
+    // });
+
     const opts = {
       segments: 5
     }
-    this.sphereMesh = BABYLON.MeshBuilder.CreateSphere(data.name, opts, scn);
+    const sqOpts = {
+      size: 1
+    }
+    //this.sphereMesh = BABYLON.MeshBuilder.CreateSphere(data.name, opts, scn);
+    this.sphereMesh = BABYLON.MeshBuilder.CreateBox(data.name, sqOpts, scn);
     this.sphereMesh.metadata = {parent: this};
 
     //const mat = new BABYLON.StandardMaterial("cell", scn);
     const mat = new CellMaterial("cell", scn);
 
     // Set up the diffuse texture
-    mat.diffuseTexture = new BABYLON.Texture("./devassets/256.jpg", scn);
+    mat.diffuseTexture = new BABYLON.Texture("./assets/256.jpg", scn);
 
     // Set up diffuse color
     mat.diffuseColor = new BABYLON.Color3(0.0, 0.0, 1.0);

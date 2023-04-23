@@ -1,0 +1,16 @@
+{
+  "star":{
+    "name":"Sol",
+    "size":111
+  },
+  "objects":[
+    {
+      "name":"Mercury",
+      "size":222
+    },
+    {
+      "name":"Venus",
+      "size":333
+    }
+  ]
+}

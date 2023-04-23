@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState, useRef } from 'react';
 import * as engine from './babylonEngine';
 import { LEVEL }   from './levels/level';
 import { SpaceUI } from './levels/solarSystem/ui/SpaceUI';
@@ -13,7 +13,9 @@ import { DinoUI }  from './levels/dino/ui/DinoUI';
 // Initially the comms between UI and "backend" i.e. Babylon was going to be a callback mechanism
 // passed to the engine, but this is difficult to manage a flexible way so I switched to the event 
 // system.
-export const Babylon: FunctionComponent = () =>
+let canvas: HTMLCanvasElement;
+let doneStupidUnmount = false;
+export default function BabylonX() 
 {
   // const[planets, setPlanets] = useState([]);
   const[currentLevel, setLevel] = useState(LEVEL.SPACE);
@@ -24,17 +26,24 @@ export const Babylon: FunctionComponent = () =>
   //   // setPlanets(data as any)
   // };
 
+  //const effectRan = useRef(false);
+
   useEffect(() => 
   {
     console.log("Creating Babylon component....");
 
-    const canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
-    
+    // only init on 2nd run
+    // if (doneStupidUnmount === true)
+    // {
+    canvas = document.getElementById("BblCanvas") as HTMLCanvasElement;
     engine.createScene(canvas);
-
+      
+    // }
     return () =>
     {
       console.log("Destroying Babylon component...");
+      doneStupidUnmount = true;
+      //effectRan.current = true;
     };
 
   }, []);

@@ -6,24 +6,24 @@ import { level } from './levels/level'
 
 let canvas2: HTMLCanvasElement;
 let ctx2: CanvasRenderingContext2D;
-let interval: number;
+//let interval: number;
 let engine: BABYLON.Engine;
 let scene: BABYLON.Scene
 //let x = 0;
-let camera1: BABYLON.ArcRotateCamera;
+//let camera1: BABYLON.ArcRotateCamera;
 let camera2: BABYLON.ArcRotateCamera;
 let camera3: BABYLON.ArcRotateCamera;
 //var camera4: bln.ArcRotateCamera;
 //var camera5: bln.ArcRotateCamera;
 let shadowGenerator: BABYLON.ShadowGenerator;
-let rt1: BABYLON.RenderTargetTexture;
+//let rt1: BABYLON.RenderTargetTexture;
 //let rt2: bln.RenderTargetTexture;
 //let rt3: bln.RenderTargetTexture;
 const clearCol = new BABYLON.Color4(0.0, 0.0, 0.0, 1.0);
 
 //let uiNotification : ( data: object ) => void;
 
-const isInit = false;
+// let isInit = false;
 let currentLevel: level;
 // Create the main Babylon scene and set it up.  The parameter 'fn' is a callback function so this
 // class can send data back to the UI system which is a React component.  As this is a plain
@@ -38,7 +38,7 @@ function createScene(canvas: HTMLCanvasElement)
   // }
   // else
   //   return;
-
+    
   engine = new BABYLON.Engine(canvas, true);
 
   // currentLevel is a generic 'level' object but is loaded with a specific concrete type
@@ -49,6 +49,8 @@ function createScene(canvas: HTMLCanvasElement)
   currentLevel.load(engine);
 
   engine.runRenderLoop(currentLevel.render.bind(currentLevel));
+
+  return true;
 }
 
 function createRenderTarget(cam: BABYLON.Camera, _width = 256, _height = 256): BABYLON.RenderTargetTexture
@@ -86,29 +88,6 @@ function getImageFromCamera(cam: BABYLON.Camera)
   //let imageData3 = new ImageData(pixels3, 256);
 
   ctx2.clearRect(0, 0, 200, 200);
-
-  //ctx2.putImageData(imageData, 0, 128, 0, 0, 128, 128);
-  // createImageBitmap(imageData).then((img: ImageBitmap) =>
-  // {
-  //     ctx2.save()
-  //     ctx2.translate(0, 512);
-  //     ctx2.scale(1.0, -1.0);
-  //     ctx2.drawImage(img, 0, 0, 256, 256);
-  //     ctx2.drawImage(img, 0, 256, 256, 256);
-  //     ctx2.restore();
-  //     //ctx2.drawImage(img, 0, 128, 128, 128);
-  // });
-
-  // createImageBitmap(imageData3).then((img: ImageBitmap) =>
-  // {
-  //     ctx2.save()
-  //     ctx2.translate(0, 512);
-  //     ctx2.scale(1.0, -1.0);
-  //     ctx2.drawImage(img, 256, 0, 256, 256);
-  //     ctx2.drawImage(img, 256, 256, 256, 256);
-  //     ctx2.restore();
-  //     //ctx2.drawImage(img, 0, 128, 128, 128);
-  // });
 
   ctx2.fillStyle = 'green';
   ctx2.fillRect(10, 10, 150, 100);
@@ -165,6 +144,7 @@ function setCanvas(canvas: HTMLCanvasElement)
 export
 {
   createScene     as createScene,
-  setCanvas       as setCanvas
+  setCanvas       as setCanvas,
+  // isInit          as isInitialised
   //loadModel as loadModel,
 }
