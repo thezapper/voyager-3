@@ -1,5 +1,5 @@
 import { level } from '../level';
-import * as BABYLON from 'babylonjs';
+import * as BABYLON from '@babylonjs/core';
 //import 'babylonjs-loaders';
 import { ee } from '../../../..';
 
@@ -102,7 +102,7 @@ export class solarSystem implements level
 
     // Set up objects for the level
 
-    this.defaultCam = new BABYLON.ArcRotateCamera("Camera", 0, BABYLON.Angle.FromDegrees(45).radians(), 80, 
+    this.defaultCam = new BABYLON.ArcRotateCamera("Camera", 0, BABYLON.Angle.FromDegrees(45).radians(), 200, 
       new BABYLON.Vector3(0, 0, 0), this.scene);
     this.defaultCam.setTarget(BABYLON.Vector3.Zero());
     this.defaultCam.attachControl(engine.getRenderingCanvas(), false); // Attach the camera to the canvas
@@ -178,7 +178,7 @@ export class solarSystem implements level
 
     this.planetObjs.forEach((item, idx) => 
     {
-      item.tick();
+      item.tick(this.scene.deltaTime);
     });
 
     this.scene.render();  

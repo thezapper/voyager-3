@@ -12,7 +12,7 @@ export enum LEVEL {
   CV
 }
 
-import { Engine } from 'babylonjs';
+import { Engine } from '@babylonjs/core';
 //import 'babylonjs-loaders';
 
 export interface level

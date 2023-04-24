@@ -59,14 +59,17 @@ This will start watching the files for the server and initalise a server restart
 
 ---
 
-## <rustyText> The Rust webserver experiment
+<img src="rust.svg" width="70" style="display: block; margin: auto; padding-top: 30px">
+
+## <rustyText>  The Rust webserver experiment 
 I've been playing with [Rust](https://www.rust-lang.org/) a bit so wanted to try this.  Assuming you have the Rust tools installed, this server can be run directly from the root dir using.  
 ```
 npm run rust
 ```
 The "app" has a bunch to test code as I was using it as an experimental playground, the webserver part is handled by [Actix](https://actix.rs/). 
 
-## <rustyText> Tauri Standalone (Electron replacement)
+
+## <rustyText>   Tauri Standalone (Electron replacement)
 
 I also added support for standalone builds similar to Electron but using [Tauri](https://tauri.app/) instead.
 
@@ -76,6 +79,15 @@ npm run tauri build
 ```
 This assumes the assets have already been built with one of the earlier frontend build commands as it bundles the content of the ```./client/public``` folder.  I've only tested this on Windows.  The resulting executable will be located at ```.\voyager-3\src-tauri\target\release\voyager-3.exe```
 
+<br/> <br/> <br/>
+<br/> <br/> <br/>
+
+
+---
+Please ignore if viewing on Github. <br/>
+Inline styles that show up in VSCode don't show on Github
+
+
 <style>
 headText{
   color:#aa22ff;
@@ -84,6 +96,11 @@ headText{
 
 subheadText{
   color:#aa77ff;
+}
+
+rustyImage{
+  color:#ff4000;
+  text-align: center;
 }
 
 rustyText{
