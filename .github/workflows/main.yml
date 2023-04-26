@@ -31,5 +31,5 @@ jobs:
         run: npm install
 
       - name: Build the front end project
-        run: npm run build
+        run: npm run build-vite
         
