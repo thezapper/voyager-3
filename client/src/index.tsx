@@ -5,7 +5,7 @@ import "./styles.css";
 import { createRoot } from 'react-dom/client';
 
 //import { ThreeRenderer } from './components/three/threeRenderer';
-import BabylonX  from './components/babylon/babylon';
+import Babylon  from './components/babylon/babylon';
 import React from "react";
 
 import {EventEmitter} from 'events';
@@ -36,4 +36,4 @@ ee.setMaxListeners(20);
 //createRoot(document.getElementById('container')).render(<Babylon />);
 const container = document.getElementById('container');
 const root = createRoot(container);
-root.render(<BabylonX />);
+root.render(<Babylon />);

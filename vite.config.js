@@ -6,7 +6,11 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 export default defineConfig(
   {
     plugins: [react(), svelte()],
-    server: {port:80},
+    server: {
+      port:80,
+      host:"127.0.0.1",
+      strictPort:true
+    },
     root: "client/src",
     publicDir: "client/public",
     build: {

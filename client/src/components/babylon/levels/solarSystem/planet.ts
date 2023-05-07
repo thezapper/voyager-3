@@ -12,7 +12,8 @@ export interface planetData
   name:string,
   radius:number,    // km
   distance:number,  // millions of km
-  url:string
+  url:string,
+  col:Array<number>
 }
 
 export type notifyCallback =  ( data: object ) => void;
@@ -21,25 +22,38 @@ export class planet //implements planetData
 {
   data: planetData;
   onClickCallback : notifyCallback;
-
+  scn: Scene;
   private sphereMesh: Mesh;
   isSelected  = false;
 
-  rotRate = 0.5 * (Math.PI * 2); // rotations per second
-  tick = (delta: number) =>
-  {
-    if (this.isSelected == true)
-    {
-      const rot = this.rotRate * (delta / 1000);
-      this.sphereMesh.rotation.y += rot;
-    }
-  }
-
+  
   getPos = () =>
   {
     return this.sphereMesh.position;
   }
+
+  // -- tick ------------------------------------------------
+  // Update the object 
+  // --------------------------------------------------------
+  rotRate = 0.11 * (Math.PI * 2); // rotations per second
+  tick = (delta: number) =>
+  {
+    if (delta === undefined)
+      return;
+
+    let rot = this.rotRate * (delta / 1000);
+    if (this.isSelected == true)
+    {
+      rot = rot*3;
+    }
+
+    // else rotate really slowly
+    this.sphereMesh.rotation.y += rot;
+  }
   
+  // -- onPick ----------------------------------------------
+  // Click on the planet 
+  // --------------------------------------------------------
   onPick = (evt) =>
   {
     this.isSelected = true;
@@ -47,10 +61,11 @@ export class planet //implements planetData
     //this.onClickCallback({name: this.data.name, source:'engine'});
   }
 
-  constructor(data:planetData, scn: Scene)
+  // -- constructor -----------------------------------------
+  constructor(data:planetData, _scn: Scene)
   {
     this.data = data;
-
+    this.scn = _scn;
     // ee.on('selectPlanet', (data) => 
     // {
     //   console.log(data, this.data);
@@ -59,21 +74,21 @@ export class planet //implements planetData
     const opts = {
       segments: 5
     }
-    const sqOpts = {
-      size: 1
-    }
-    this.sphereMesh = MeshBuilder.CreateSphere(data.name, opts, scn);
+    this.sphereMesh = MeshBuilder.CreateSphere(data.name, opts, this.scn);
+    // const sqOpts = {
+    //   size: 1
+    // }
     //this.sphereMesh = BABYLON.MeshBuilder.CreateBox(data.name, sqOpts, scn);
     this.sphereMesh.metadata = {parent: this};
 
     //const mat = new BABYLON.StandardMaterial("cell", scn);
-    const mat = new CellMaterial("cell", scn);
+    const mat = new CellMaterial("cell", this.scn);
 
     // Set up the diffuse texture
-    mat.diffuseTexture = new Texture("./assets/256.jpg", scn);
+    mat.diffuseTexture = new Texture("./assets/256.jpg", this.scn);
 
     // Set up diffuse color
-    mat.diffuseColor = new Color3(0.0, 0.0, 1.0);
+    mat.diffuseColor = new Color3(this.data.col[0], this.data.col[1], this.data.col[2]);
     //mat.emissiveColor = new BABYLON.Color3(0.2, 0.2, 0.2);
     //mat. = new BABYLON.Color3(0.0, 0.0, 1.0);
     mat.computeHighLevel = true;

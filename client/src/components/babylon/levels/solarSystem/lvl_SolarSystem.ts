@@ -28,14 +28,14 @@ export class solarSystem implements level
   planets:planetData[] = [
     // radius in km, distance in millions of km
     //{ name: 'Sun', radius: 696_000, distance: 0, url: ''},
-    { name: 'Mercury', radius: 2_440, distance: 60, url: 'Mercury_(planet)'},
-    { name: 'Venus', radius: 6_050, distance: 100, url: 'Venus'},
-    { name: 'Earth', radius: 6_370, distance: 150, url: 'Earth'},
-    { name: 'Mars', radius: 3_390, distance: 220, url: 'Mars'},
-    { name: 'Jupiter', radius: 69_900, distance: 780, url: 'Jupiter'},
-    { name: 'Saturn', radius: 58_200, distance: 1420, url: 'Saturn'},
-    { name: 'Uranus', radius: 25_300, distance: 2870, url: 'Uranus'},
-    { name: 'Neptune', radius: 24_600, distance: 4500, url: 'Neptune'},
+    { name: 'Mercury', radius: 2_440, distance: 60, url: 'Mercury_(planet)', col:[0.6, 0.6, 0.6]},
+    { name: 'Venus', radius: 6_050, distance: 100, url: 'Venus', col:[0.8, 0.8, 0.5]},
+    { name: 'Earth', radius: 6_370, distance: 150, url: 'Earth', col:[0.1, 0.4, 0.8]},
+    { name: 'Mars', radius: 3_390, distance: 220, url: 'Mars', col:[0.6, 0.1, 0.1]},
+    { name: 'Jupiter', radius: 69_900, distance: 780, url: 'Jupiter', col:[0.6, 0.3, 0.1]},
+    { name: 'Saturn', radius: 58_200, distance: 1420, url: 'Saturn', col:[0.3, 0.2, 0.1]},
+    { name: 'Uranus', radius: 25_300, distance: 2870, url: 'Uranus', col:[0.1, 0.5, 0.5]},
+    { name: 'Neptune', radius: 24_600, distance: 4500, url: 'Neptune', col:[0.1, 0.1, 0.4]},
   ];
 
   planetObjs:planet[] = [];
@@ -175,7 +175,7 @@ export class solarSystem implements level
 
   render(): void 
   {
-
+    
     this.planetObjs.forEach((item, idx) => 
     {
       item.tick(this.scene.deltaTime);
