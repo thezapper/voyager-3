@@ -4,6 +4,8 @@ import { LEVEL }   from './levels/level';
 import { SpaceUI } from './levels/solarSystem/ui/SpaceUI';
 import { DinoUI }  from './levels/dino/ui/DinoUI';
 //interface Babylon_props { }
+import svApp from '../main'
+
 
 // This component is intended to be a fully enclosed Babylon React component.  However, unlike 
 // react-three-fiber which converts every three object into a React component here I'm keeping
@@ -15,7 +17,7 @@ import { DinoUI }  from './levels/dino/ui/DinoUI';
 // system.
 let canvas: HTMLCanvasElement;
 let doneStupidUnmount = false;
-export default function BabylonX() 
+export default function Babylon() 
 {
   // const[planets, setPlanets] = useState([]);
   const[currentLevel, setLevel] = useState(LEVEL.SPACE);
@@ -65,6 +67,7 @@ export default function BabylonX()
   const height = document.body.clientHeight;
   return (
     <>
+      <div id="svelte-app" />
       {currentUi}
 
       <canvas id="BblCanvas" width={width} height={height}></canvas>
