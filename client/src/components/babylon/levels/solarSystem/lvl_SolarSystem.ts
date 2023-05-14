@@ -1,7 +1,7 @@
 import { level } from '../level';
 import * as BABYLON from '@babylonjs/core';
 //import 'babylonjs-loaders';
-import { ee } from '../../../..';
+import { ee } from '../../../../main'
 
 import {planet, planetData, notifyCallback} from './planet'
 //import { PlanetObj } from '../../../three/objects/planet';
@@ -14,13 +14,17 @@ class systemState
 export class solarSystem implements level 
 {
   // post information back to the UI layer
-  uiNotification : ( data: object ) => void;
-  scene: BABYLON.Scene;
+  //uiNotification : ( data: object ) => void;
+  scene: BABYLON.Scene | null;
   engine: BABYLON.Engine;
   defaultCam: BABYLON.ArcRotateCamera;
   light: BABYLON.PointLight;
   currentPlanet?: planet;
 
+  constructor()
+  {
+    this.scene = null;
+  }
   // +------------------------------------------------------------+
   // | TODO - Load all data from the server
   // +------------------------------------------------------------+
@@ -106,7 +110,7 @@ export class solarSystem implements level
       new BABYLON.Vector3(0, 0, 0), this.scene);
     this.defaultCam.setTarget(BABYLON.Vector3.Zero());
     this.defaultCam.attachControl(engine.getRenderingCanvas(), false); // Attach the camera to the canvas
-    this.scene.activeCameras.push(this.defaultCam);
+    this.scene.activeCameras?.push(this.defaultCam);
 
     const lightPos = new BABYLON.Vector3(0, 50, 0);
     this.light = new BABYLON.PointLight("pointLight", lightPos, this.scene);
@@ -119,7 +123,7 @@ export class solarSystem implements level
       item.distance = orbit;
       orbit += item.radius/1000;
       const newPlanet = new planet(item, this.scene);
-      newPlanet.onClickCallback = this.selectPlanet;
+      //newPlanet.onClickCallback = this.selectPlanet;
       this.planetObjs.push(newPlanet)
     });
 
@@ -139,7 +143,7 @@ export class solarSystem implements level
       {
         case BABYLON.PointerEventTypes.POINTERDOWN:
           console.log("POINTER DOWN");
-          if (pointerInfo.pickInfo.pickedMesh === null)
+          if (pointerInfo.pickInfo?.pickedMesh === null)
             ee.emit('selectPlanet', {name: 'none', source:'engine'});
           break;
         case BABYLON.PointerEventTypes.POINTERUP:
@@ -155,7 +159,7 @@ export class solarSystem implements level
           // Rather than doing an 'if this or that clicked' block here
           // each mesh has a onclick method
           console.log("POINTER PICK");
-          pointerInfo.pickInfo.pickedMesh.metadata?.onPick(pointerInfo);
+          pointerInfo.pickInfo?.pickedMesh?.metadata?.onPick(pointerInfo);
           break;
         case BABYLON.PointerEventTypes.POINTERTAP:
         {

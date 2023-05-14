@@ -5,7 +5,7 @@ import { Scene }             from '@babylonjs/core/scene';
 import { Texture }           from '@babylonjs/core/Materials';
 import { Vector3, Axis, Color3 } from '@babylonjs/core/Maths';
 
-import { ee } from '../../../../index'
+import { ee } from '../../../../main'
 
 export interface planetData
 {
@@ -21,7 +21,7 @@ export type notifyCallback =  ( data: object ) => void;
 export class planet //implements planetData
 {
   data: planetData;
-  onClickCallback : notifyCallback;
+  //onClickCallback : notifyCallback;
   scn: Scene;
   private sphereMesh: Mesh;
   isSelected  = false;
@@ -54,7 +54,7 @@ export class planet //implements planetData
   // -- onPick ----------------------------------------------
   // Click on the planet 
   // --------------------------------------------------------
-  onPick = (evt) =>
+  onPick = () =>
   {
     this.isSelected = true;
     ee.emit('selectPlanet', {name: this.data.name, source:'engine'});

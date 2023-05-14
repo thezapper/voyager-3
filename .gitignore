@@ -5,3 +5,4 @@
 /server/rust/target/
 /.vscode/
 *.js.map
+.svelte-kit/
