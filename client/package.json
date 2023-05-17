@@ -1,0 +1,48 @@
+{
+  "name": "voyager-3",
+  "version": "1.0.0",
+  "description": "Client side code for my ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build-vite": "vite build",
+    "preview": "vite preview",
+    "build-tsc": "tsc --project ./tsconfig.json",
+    "tauri": "tauri",
+    "rust": "cd ../server/rust && cargo run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thezapper/voyager-3.git"
+  },
+  "author": "Gary Gray",
+  "license": "ISC",
+  "homepage": "https://github.com/thezapper/solartask#readme",
+  "dependencies": {
+    "@babylonjs/core": "^6.0.0",
+    "@babylonjs/materials": "^6.0.0",
+    "@tauri-apps/api": "^1.1.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "axios": "^1.1.2",
+    "events": "^3.3.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.1.1",
+    "@types/events": "^3.0.0",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.144.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "babylonjs-loaders": "^6.0.0",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.25.0",
+    "eslint-plugin-react": "^7.31.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.145.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.1"
+  }
+}

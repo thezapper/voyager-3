@@ -11,10 +11,10 @@ export default defineConfig(
       host:"127.0.0.1",
       strictPort:true
     },
-    root: "client/src",
-    publicDir: "client/public",
+    root: "./src",
+    publicDir: "./public",
     build: {
-      outDir: "../public"
+      outDir: "./public"
     }
   }
   
