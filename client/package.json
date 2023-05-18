@@ -22,6 +22,7 @@
   "dependencies": {
     "@babylonjs/core": "^6.0.0",
     "@babylonjs/materials": "^6.0.0",
+    "@sveltejs/vite-plugin-svelte": "^2.2.0",
     "@tauri-apps/api": "^1.1.0",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.1.2",

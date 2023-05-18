@@ -14,7 +14,7 @@ export default defineConfig(
     root: "./src",
     publicDir: "./public",
     build: {
-      outDir: "./public"
+      outDir: "../build"
     }
   }
   

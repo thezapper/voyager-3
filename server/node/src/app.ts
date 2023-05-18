@@ -37,8 +37,8 @@ let cwd = process.cwd();
 log.info(`Current Working Directory: ${cwd}`);
 
 const options = {
-  key: fs.readFileSync(cwd + '/server/cert/privatekey.key'),
-  cert: fs.readFileSync(cwd + '/server/cert/certificate.crt')
+  key: fs.readFileSync(cwd + '/../cert/privatekey.key'),
+  cert: fs.readFileSync(cwd + '/../cert/certificate.crt')
 };
 
 const server = https.createServer(options, app);

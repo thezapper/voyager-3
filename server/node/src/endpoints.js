@@ -10,21 +10,21 @@ export class Endpoints {
             res.sendFile('index.html');
         });
         // ----------------------------------------------------------
-        // Create new project
+        // EXAMPLE PUT
         // ----------------------------------------------------------
         exp.put('/example-put', (req, res) => {
             let data = req.body;
             res.send(200);
         });
         // ----------------------------------------------------------
-        // Update project
+        // EXAMPLE POST
         // ----------------------------------------------------------
         exp.post('/example-post', (req, res) => {
             let data = req.body;
             res.send(200);
         });
         // ----------------------------------------------------------
-        // Delete project (future request?)
+        // EXAMPLE DELETE
         // ----------------------------------------------------------
         exp.delete('/example-delete', (req, res) => {
             res.send('/example-delete');
